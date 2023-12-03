@@ -56,11 +56,40 @@ public class Solution1 {
   // Contains Duplicate #2 easy
   public static boolean containsDuplicate2(int[] nums) {
     Arrays.sort(nums);
-    for (int i = 0; i < nums.length -1; i++) {
-      if(nums[i] == nums[i+1]){
+    for (int i = 0; i < nums.length - 1; i++) {
+      if (nums[i] == nums[i + 1]) {
         return true;
       }
     }
     return false;
+  }
+
+  // Product of Array Except Self - medium
+  public static int[] productExceptSelf(int[] nums) {
+    int size = nums.length;
+
+    int[] prefix = new int[size];
+    int[] postfix = new int[size];
+
+    int[] result = new int[size];
+
+    int pre_variable = 1;
+
+    for (int i = 0; i < size; i++) {
+      prefix[i] = pre_variable;
+      pre_variable *= nums[i];
+    }
+
+    int post_variable = 1;
+
+    for (int i = size -1; i >= 0; i--) {
+      postfix[i] = post_variable;
+      post_variable *= nums[i];
+    }
+
+    for (int i = 0; i < size; i++) {
+      result[i] = prefix[i] * postfix[i];
+    }
+    return result;
   }
 }
