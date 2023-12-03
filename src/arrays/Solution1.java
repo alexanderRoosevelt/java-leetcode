@@ -1,5 +1,11 @@
 package arrays;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Solution1 {
 
   // two sum - easy
@@ -26,9 +32,35 @@ public class Solution1 {
 
     for (int i = 1; i < prices.length; i++) {
       int currentPrice = prices[i];
-      minPrice = Math.min(minPrice, currentPrice); //1
+      minPrice = Math.min(minPrice, currentPrice);
       maxProfit = Math.max(maxProfit, currentPrice - minPrice);
     }
     return maxProfit;
+  }
+
+  // Contains Duplicate #1 - easy
+  public static boolean containsDuplicate(int[] nums) {
+
+    Set<Integer> set = new HashSet<>();
+    List<Integer> doublicate = new ArrayList<>();
+    for (int num : nums) {
+      if (set.contains(num)) {
+        doublicate.add(num);
+      } else {
+        set.add(num);
+      }
+    }
+    return !doublicate.isEmpty();
+  }
+
+  // Contains Duplicate #2 easy
+  public static boolean containsDuplicate2(int[] nums) {
+    Arrays.sort(nums);
+    for (int i = 0; i < nums.length -1; i++) {
+      if(nums[i] == nums[i+1]){
+        return true;
+      }
+    }
+    return false;
   }
 }
